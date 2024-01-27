@@ -1,6 +1,6 @@
 import React from "react";
 
-const Background = () => {
+export const Background = () => {
     return (
         <div
             id="main-background"
@@ -13,5 +13,3 @@ const Background = () => {
         />
     );
 };
-
-export default Background;

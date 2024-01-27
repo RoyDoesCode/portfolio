@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 
-import Background from "@/components/background";
+import { Background } from "@/components/background";
 import { ThemeProvider } from "@/providers/theme-provider";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const CeraCY = localFont({
+    src: [
+        {
+            path: "../fonts/Cera CY Regular.ttf",
+            weight: "400",
+            style: "normal",
+        },
+        {
+            path: "../fonts/Cera CY Bold.ttf",
+            weight: "700",
+            style: "normal",
+        },
+    ],
+});
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -20,7 +33,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={montserrat.className}>
+            <body className={CeraCY.className}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"

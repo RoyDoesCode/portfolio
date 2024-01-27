@@ -1,4 +1,8 @@
-import React from "react";
+import { Montserrat } from "next/font/google";
+
+import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 const Hero = () => {
     return (
@@ -7,17 +11,26 @@ const Hero = () => {
                 className="
                     text-sm 
                     text-neutral-400 
+                    opacity-75
                     -translate-x-28 
                     tracking-widest
                 "
             >
                 I AM
             </small>
-            <h1 className="text-[150pt] font-black leading-none">ROY</h1>
+            <h1
+                className={cn(
+                    "text-[150pt] font-black leading-none",
+                    montserrat.className
+                )}
+            >
+                ROY
+            </h1>
             <small
                 className="
                     text-sm 
                     text-neutral-400 
+                    opacity-75
                     translate-x-28 
                     leading-7 
                     mt-4 
