@@ -13,8 +13,7 @@ body,
     --main-bg-gradient-2: #0e0f13;
 }
 
-*::selection,
-*::-moz-selection {
+*::selection {
     color: #dddddd;
     background-color: #505050;
 }
@@ -94,22 +93,22 @@ body,
 
 #main-background {
     background: -webkit-radial-gradient(
-        circle at 40% 40px,
+        circle at 35% 40px,
         var(--main-bg-gradient-1),
         var(--main-bg-gradient-2) 75%
     );
     background: -o-radial-gradient(
-        circle at 40% 40px,
+        circle at 35% 40px,
         var(--main-bg-gradient-1),
         var(--main-bg-gradient-2) 75%
     );
     background: -moz-radial-gradient(
-        circle at 40% 40px,
+        circle at 35% 40px,
         var(--main-bg-gradient-1),
         var(--main-bg-gradient-2) 75%
     );
     background: radial-gradient(
-        circle at 40% 40px,
+        circle at 35% 40px,
         var(--main-bg-gradient-1),
         var(--main-bg-gradient-2) 75%
     );
