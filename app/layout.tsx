@@ -3,6 +3,9 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 
+import Background from "@/components/background";
+import { ThemeProvider } from "@/providers/theme-provider";
+
 const CeraCY = localFont({
     src: [
         {
@@ -30,7 +33,16 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={CeraCY.className}>{children}</body>
+            <body className={CeraCY.className}>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                >
+                    <Background />
+                    {children}
+                </ThemeProvider>
+            </body>
         </html>
     );
 }
