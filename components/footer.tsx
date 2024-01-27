@@ -13,7 +13,6 @@ export const Footer = () => {
                     justify-end
                     w-48
                     gap-4 
-                    cursor-pointer 
                     rotate-90
                     p-4
                 "

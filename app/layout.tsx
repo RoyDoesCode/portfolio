@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 
 import { Background } from "@/components/background";
+import { Cursor } from "@/components/cursor";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const CeraCY = localFont({
@@ -39,6 +40,7 @@ export default function RootLayout({
                     defaultTheme="dark"
                     enableSystem
                 >
+                    <Cursor />
                     <Background />
                     {children}
                 </ThemeProvider>

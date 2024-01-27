@@ -27,7 +27,7 @@ export const Navbar = () => {
                 width={60}
                 height={60}
                 onClick={() => router.push("/")}
-                className="cursor-pointer fill-neutral-400 hover:fill-primary transition-colors"
+                className="fill-neutral-400 hover:fill-primary transition-colors"
             />
             <nav className="flex items-center gap-12">
                 {routes.map((route) => (

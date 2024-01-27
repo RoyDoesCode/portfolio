@@ -9,8 +9,12 @@ body,
 }
 
 :root {
-    --main-bg-gradient-1: #3f4044;
-    --main-bg-gradient-2: #0e0f13;
+    --main-bg-gradient-1: #3f4044c0;
+    --main-bg-gradient-2: #010102c0;
+}
+
+* {
+    cursor: none !important;
 }
 
 *::selection {
@@ -93,23 +97,27 @@ body,
 
 #main-background {
     background: -webkit-radial-gradient(
-        circle at 35% 40px,
-        var(--main-bg-gradient-1),
-        var(--main-bg-gradient-2) 75%
-    );
+            circle at 35% 40px,
+            var(--main-bg-gradient-1),
+            var(--main-bg-gradient-2) 75%
+        ),
+        url(https://grainy-gradients.vercel.app/noise.svg);
     background: -o-radial-gradient(
-        circle at 35% 40px,
-        var(--main-bg-gradient-1),
-        var(--main-bg-gradient-2) 75%
-    );
+            circle at 35% 40px,
+            var(--main-bg-gradient-1),
+            var(--main-bg-gradient-2) 75%
+        ),
+        url(https://grainy-gradients.vercel.app/noise.svg);
     background: -moz-radial-gradient(
-        circle at 35% 40px,
-        var(--main-bg-gradient-1),
-        var(--main-bg-gradient-2) 75%
-    );
+            circle at 35% 40px,
+            var(--main-bg-gradient-1),
+            var(--main-bg-gradient-2) 75%
+        ),
+        url(https://grainy-gradients.vercel.app/noise.svg);
     background: radial-gradient(
-        circle at 35% 40px,
-        var(--main-bg-gradient-1),
-        var(--main-bg-gradient-2) 75%
-    );
+            circle at 35% 40px,
+            var(--main-bg-gradient-1),
+            var(--main-bg-gradient-2) 75%
+        ),
+        url(https://grainy-gradients.vercel.app/noise.svg);
 }
