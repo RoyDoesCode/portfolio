@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 
 export default function HomeLayout({
@@ -13,7 +14,9 @@ export default function HomeLayout({
                 <Navbar />
             </div>
             <main className="p-48 h-full">{children}</main>
-            <div className="fixed bottom-0">Footer</div>
+            <div className="fixed bottom-0 w-full">
+                <Footer />
+            </div>
         </>
     );
 }

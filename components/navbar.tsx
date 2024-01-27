@@ -1,9 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Logo } from "@/components/logo";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -27,7 +27,7 @@ export const Navbar = () => {
                 width={60}
                 height={60}
                 onClick={() => router.push("/")}
-                className="cursor-pointer"
+                className="cursor-pointer fill-neutral-400 hover:fill-primary transition-colors"
             />
             <nav className="flex items-center gap-12">
                 {routes.map((route) => (
@@ -36,8 +36,8 @@ export const Navbar = () => {
                         href={route.path}
                         className={cn(
                             `uppercase 
-                            p-4 
                             tracking-widest 
+                            p-4 
                             text-neutral-400 
                             hover:text-primary
                             transition-colors`,
