@@ -1,3 +1,8 @@
-export default function Home() {
-    return <div className="font-bold">HELLO WORLD!</div>;
-}
+import React from "react";
+import Hero from "./components/hero";
+
+const Home = () => {
+    return <Hero />;
+};
+
+export default Home;
