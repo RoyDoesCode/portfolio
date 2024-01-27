@@ -26,7 +26,7 @@ export const Cursor = () => {
     return (
         <span
             className={cn(
-                "fixed border border-primary rounded-full w-12 h-12",
+                "fixed border border-white rounded-full w-14 h-14",
                 !isMouseOnScreen && "hidden"
             )}
             style={{
