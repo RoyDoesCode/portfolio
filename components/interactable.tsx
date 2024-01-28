@@ -48,7 +48,7 @@ export const Interactable: React.FC<InteractableProps> = ({
                 transition: { duration: 0.1 },
             });
         },
-        onLeave: async () => {
+        onLeave: () => {
             if (!ref.current) return;
 
             const relativeParentRect = ref.current.getBoundingClientRect();
@@ -61,17 +61,19 @@ export const Interactable: React.FC<InteractableProps> = ({
                 transform: "translate(0%,0%)",
             });
 
-            await controls.start({
-                left: Number(cursor.position.x) - relativeParentRect.left,
-                top: Number(cursor.position.y) - relativeParentRect.top,
-                width: cursor.radius,
-                height: cursor.radius,
-                transform: "translate(-50%,-50%)",
-                transition: { duration: 0.05 },
-            });
-
-            cursor.setShow(true);
-            setShow(false);
+            controls
+                .start({
+                    left: Number(cursor.position.x) - relativeParentRect.left,
+                    top: Number(cursor.position.y) - relativeParentRect.top,
+                    width: cursor.radius,
+                    height: cursor.radius,
+                    transform: "translate(-50%,-50%)",
+                    transition: { duration: 0.05 },
+                })
+                .finally(() => {
+                    cursor.setShow(true);
+                    setShow(false);
+                });
         },
     });
 
