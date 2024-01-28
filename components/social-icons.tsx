@@ -20,15 +20,15 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
 }) => {
     const socialIcons: { href: string; icon: IconType }[] = [
         {
-            href: "#",
+            href: "#1",
             icon: FaTiktok,
         },
         {
-            href: "#",
+            href: "#2",
             icon: FaYoutube,
         },
         {
-            href: "#",
+            href: "#3",
             icon: TiSocialInstagram,
         },
     ];

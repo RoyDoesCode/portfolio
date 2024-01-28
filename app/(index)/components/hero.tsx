@@ -20,8 +20,8 @@ const Hero = () => {
             </small>
             <h1
                 className={cn(
-                    "text-[150pt] font-black leading-none select-none",
-                    montserrat.className
+                    "text-[150pt] font-black leading-none select-none"
+                    // montserrat.className
                 )}
             >
                 ROY

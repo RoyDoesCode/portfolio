@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 import useMouseOn from "@/hooks/use-mouse-on";
+import useCursor from "@/hooks/use-cursor";
 
 interface InteractableProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
@@ -14,11 +15,13 @@ export const Interactable: React.FC<InteractableProps> = ({
     className,
     ...props
 }) => {
+    const { setShow: setShowCursor } = useCursor();
+
     const ref = useRef<HTMLDivElement>(null);
 
     const isMouseOn = useMouseOn(ref.current, {
-        onEnter: () => {},
-        onLeave: () => {},
+        onEnter: () => setShowCursor(false),
+        onLeave: () => setShowCursor(true),
     });
 
     return (
@@ -26,7 +29,10 @@ export const Interactable: React.FC<InteractableProps> = ({
             <span
                 className="
                     absolute 
-                    inset-0 
+                    top-0
+                    left-0
+                    w-full
+                    h-full 
                     rounded-full 
                     border 
                     border-white 
