@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 
-import useMouseOnScreen from "@/hooks/use-mouse-on-screen";
+import useMouseOn from "@/hooks/use-mouse-on";
 import { cn } from "@/lib/utils";
 
 export const Cursor = () => {
-    const isMouseOnScreen = useMouseOnScreen();
+    const isMouseOnScreen = useMouseOn("document");
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
 

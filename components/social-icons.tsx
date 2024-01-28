@@ -1,8 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import { IconType } from "react-icons";
 import { FaTiktok, FaYoutube } from "react-icons/fa";
 import { TiSocialInstagram } from "react-icons/ti";
 
+import { Interactable } from "@/components/interactable";
 import { cn } from "@/lib/utils";
 
 interface SocialIconsProps {
@@ -16,6 +18,21 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
     size,
     className,
 }) => {
+    const socialIcons: { href: string; icon: IconType }[] = [
+        {
+            href: "#",
+            icon: FaTiktok,
+        },
+        {
+            href: "#",
+            icon: FaYoutube,
+        },
+        {
+            href: "#",
+            icon: TiSocialInstagram,
+        },
+    ];
+
     return (
         <div
             className={cn(
@@ -24,24 +41,16 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
                 className
             )}
         >
-            <Link
-                href="#"
-                className="p-4 text-neutral-400 hover:text-primary transition-colors"
-            >
-                <FaTiktok size={size} />
-            </Link>
-            <Link
-                href="#"
-                className="p-4 text-neutral-400 hover:text-primary transition-colors"
-            >
-                <FaYoutube size={size} />
-            </Link>
-            <Link
-                href="#"
-                className="p-4 text-neutral-400 hover:text-primary transition-colors"
-            >
-                <TiSocialInstagram size={size} />
-            </Link>
+            {socialIcons.map((socialIcon) => (
+                <Interactable key={socialIcon.href} className="m-2 p-2">
+                    <Link
+                        href={socialIcon.href}
+                        className="text-neutral-400 hover:text-primary transition-colors"
+                    >
+                        <socialIcon.icon size={size} />
+                    </Link>
+                </Interactable>
+            ))}
         </div>
     );
 };
