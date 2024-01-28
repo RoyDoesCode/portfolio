@@ -1,28 +1,28 @@
-import { MutableRefObject, useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 const useMouseOn = (
     element: HTMLElement | null | "document",
     options?: {
-        onEnter?: () => void;
-        onLeave?: () => void;
-        onMove?: () => void;
+        onEnter?: (event: MouseEvent) => void;
+        onLeave?: (event: MouseEvent) => void;
+        onMove?: (event: MouseEvent) => void;
     }
 ) => {
     const [isMouseOnScreen, setIsMouseOnScreen] = useState(false);
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter: EventListener = (event) => {
         setIsMouseOnScreen(true);
-        options?.onEnter?.();
+        options?.onEnter?.(event as MouseEvent);
     };
 
-    const handleMouseMove = () => {
+    const handleMouseMove: EventListener = (event) => {
         setIsMouseOnScreen(true);
-        options?.onMove?.();
+        options?.onMove?.(event as MouseEvent);
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave: EventListener = (event) => {
         setIsMouseOnScreen(false);
-        options?.onLeave?.();
+        options?.onLeave?.(event as MouseEvent);
     };
 
     useEffect(() => {

@@ -6,22 +6,14 @@ import useMouseOn from "@/hooks/use-mouse-on";
 import { cn } from "@/lib/utils";
 
 export const Cursor = () => {
-    const isMouseOnScreen = useMouseOn("document");
-
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
-    const updatePosition = (event: MouseEvent) => {
-        const { clientX: x, clientY: y } = event;
-        setPosition({ x, y });
-    };
-
-    useEffect(() => {
-        document.addEventListener("mousemove", updatePosition);
-
-        return () => {
-            document.removeEventListener("mousemove", updatePosition);
-        };
-    }, []);
+    const isMouseOnScreen = useMouseOn("document", {
+        onMove: (event) => {
+            const { clientX: x, clientY: y } = event;
+            setPosition({ x, y });
+        },
+    });
 
     return (
         <span
