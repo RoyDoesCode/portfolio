@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useMouseOn = (
     element: HTMLElement | null | "document",
@@ -37,7 +37,7 @@ const useMouseOn = (
             target?.removeEventListener("mousemove", handleMouseMove);
             target?.removeEventListener("mouseleave", handleMouseLeave);
         };
-    }, [element]);
+    }, [element, options?.onEnter, options?.onLeave, options?.onMove]);
 
     return isMouseOnScreen;
 };

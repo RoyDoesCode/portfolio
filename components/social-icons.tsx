@@ -42,10 +42,10 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
             )}
         >
             {socialIcons.map((socialIcon) => (
-                <Interactable key={socialIcon.href} className="m-2 p-2">
+                <Interactable key={socialIcon.href} className="m-2">
                     <Link
                         href={socialIcon.href}
-                        className="text-neutral-400 hover:text-primary transition-colors"
+                        className="text-neutral-400 group-hover:text-primary transition-colors"
                     >
                         <socialIcon.icon size={size} />
                     </Link>

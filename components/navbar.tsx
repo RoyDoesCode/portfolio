@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
+import { Interactable } from "@/components/interactable";
 import { Logo } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
@@ -22,13 +23,15 @@ export const Navbar = () => {
     ];
 
     return (
-        <div className="flex items-center justify-between p-16">
-            <Logo
-                width={60}
-                height={60}
-                onClick={() => router.push("/")}
-                className="fill-neutral-400 hover:fill-primary transition-colors"
-            />
+        <div className="flex items-center justify-between p-10">
+            <Interactable>
+                <Logo
+                    width={80}
+                    height={80}
+                    onClick={() => router.push("/")}
+                    className="fill-neutral-400 hover:fill-primary transition-colors p-2"
+                />
+            </Interactable>
             <nav className="flex items-center gap-12">
                 {routes.map((route) => (
                     <Link

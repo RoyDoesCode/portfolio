@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-
+import useCursor from "@/hooks/use-cursor";
 import useMouseOn from "@/hooks/use-mouse-on";
 import { cn } from "@/lib/utils";
-import useCursor from "@/hooks/use-cursor";
 
 export const Cursor = () => {
-    const { position, setPosition, show, setShow } = useCursor();
+    const { position, setPosition, show, setShow, radius } = useCursor(
+        (state) => state
+    );
 
     useMouseOn("document", {
         onEnter: () => setShow(true),
@@ -21,12 +21,14 @@ export const Cursor = () => {
     return (
         <span
             className={cn(
-                "fixed border border-white rounded-full w-14 h-14",
+                "fixed border border-white rounded-full",
                 !show && "hidden"
             )}
             style={{
                 top: position.y,
                 left: position.x,
+                width: radius,
+                height: radius,
                 transform: "translate(-50%, -50%)",
             }}
         />

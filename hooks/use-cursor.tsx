@@ -1,11 +1,14 @@
-import React from "react";
+import { CSSProperties } from "react";
 import { create } from "zustand";
 
+import { Position } from "@/types";
+
 interface CursorStore {
-    position: { x: number; y: number };
-    setPosition: (position: { x: number; y: number }) => void;
+    position: Position;
+    setPosition: (position: Position) => void;
     show: boolean;
     setShow: (show: boolean) => void;
+    radius: CSSProperties["width"];
 }
 
 const useCursor = create<CursorStore>((set) => ({
@@ -13,6 +16,7 @@ const useCursor = create<CursorStore>((set) => ({
     setPosition: (position) => set({ position }),
     show: true,
     setShow: (show) => set({ show }),
+    radius: "56px",
 }));
 
 export default useCursor;
