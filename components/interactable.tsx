@@ -8,14 +8,16 @@ import { cn } from "@/lib/utils";
 import { AnimationDefinition } from "framer-motion";
 
 interface InteractableProps extends React.HTMLAttributes<HTMLDivElement> {
-    type?: "circle" | "fade";
-    margin?: number;
+    type?: "circle" | "fade" | "underline";
+    marginX?: number;
+    marginY?: number;
     children: React.ReactNode;
 }
 
 export const Interactable: React.FC<InteractableProps> = ({
     type = "circle",
-    margin = 0,
+    marginX = 0,
+    marginY = 0,
     children,
     className,
     ...props
@@ -27,21 +29,32 @@ export const Interactable: React.FC<InteractableProps> = ({
         switch (type) {
             case "circle":
                 return {
-                    top: rect.top - margin / 2,
-                    left: rect.left - margin / 2,
-                    width: rect.width + margin,
-                    height: rect.width + margin,
+                    top:
+                        rect.top - marginY / 2 - (rect.width - rect.height) / 2,
+                    left: rect.left - marginX / 2,
+                    width: rect.width + marginX,
+                    height: rect.width + marginY,
                     transform: "translate(0%,0%)",
                     transition: { duration: 0.1 },
                 };
             case "fade":
                 return {
-                    top: rect.top - margin / 2,
-                    left: rect.left - margin / 2,
-                    width: rect.width + margin,
-                    height: rect.width + margin,
+                    top:
+                        rect.top - marginY / 2 - (rect.width - rect.height) / 2,
+                    left: rect.left - marginX / 2,
+                    width: rect.width + marginX,
+                    height: rect.width + marginY,
                     transform: "translate(0%,0%)",
                     opacity: 0,
+                    transition: { duration: 0.1 },
+                };
+            case "underline":
+                return {
+                    top: rect.bottom + marginY / 2,
+                    left: rect.left - marginX / 2,
+                    width: rect.width + marginX,
+                    height: 1,
+                    transform: "translate(0%,0%)",
                     transition: { duration: 0.1 },
                 };
             default:
@@ -70,7 +83,7 @@ export const Interactable: React.FC<InteractableProps> = ({
                     height: 56,
                     transform: "translate(-50%,-50%)",
                     opacity: 1,
-                    transition: { duration: 0.02 },
+                    transition: { duration: 0.05 },
                 })
                 .finally(() => cursor.setCOntrolled(false));
         },
