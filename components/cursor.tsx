@@ -1,36 +1,49 @@
 "use client";
 
+import { motion, useAnimationControls } from "framer-motion";
+import { useEffect } from "react";
+
 import useCursor from "@/hooks/use-cursor";
 import useMouseOn from "@/hooks/use-mouse-on";
 import { cn } from "@/lib/utils";
 
 export const Cursor = () => {
-    const { position, setPosition, show, setShow, radius } = useCursor(
-        (state) => state
-    );
+    const controls = useAnimationControls();
+    const cursor = useCursor();
 
     useMouseOn("document", {
-        onEnter: () => setShow(true),
+        onEnter: () => cursor.setShow(true),
         onMove: (event) => {
-            const { clientX: x, clientY: y } = event;
-            setPosition({ x, y });
+            if (!cursor.controlled) {
+                const { clientY: top, clientX: left } = event;
+                controls.set({
+                    top,
+                    left,
+                });
+            }
         },
-        onLeave: () => setShow(false),
+        onLeave: () => cursor.setShow(false),
     });
 
+    useEffect(() => {
+        cursor.setControls(controls);
+
+        controls.set({
+            left: -100,
+            top: -100,
+            width: 56,
+            height: 56,
+            transform: "translate(-50%,-50%)",
+        });
+    }, []);
+
     return (
-        <span
+        <motion.span
             className={cn(
                 "fixed border border-white rounded-full",
-                !show && "hidden"
+                !cursor.show && "hidden"
             )}
-            style={{
-                top: position.y,
-                left: position.x,
-                width: radius,
-                height: radius,
-                transform: "translate(-50%, -50%)",
-            }}
+            animate={controls}
         />
     );
 };

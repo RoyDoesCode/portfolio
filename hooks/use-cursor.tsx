@@ -2,21 +2,24 @@ import { CSSProperties } from "react";
 import { create } from "zustand";
 
 import { Position } from "@/types";
+import { AnimationControls } from "framer-motion";
 
 interface CursorStore {
-    position: Position;
-    setPosition: (position: Position) => void;
     show: boolean;
     setShow: (show: boolean) => void;
-    radius: CSSProperties["width"];
+    controlled: boolean;
+    setCOntrolled: (controlled: boolean) => void;
+    controls: AnimationControls | null;
+    setControls: (controls: AnimationControls) => void;
 }
 
 const useCursor = create<CursorStore>((set) => ({
-    position: { x: -100, y: -100 },
-    setPosition: (position) => set({ position }),
     show: true,
     setShow: (show) => set({ show }),
-    radius: "56px",
+    controlled: false,
+    setCOntrolled: (controlled) => set({ controlled }),
+    controls: null,
+    setControls: (controls) => set({ controls }),
 }));
 
 export default useCursor;

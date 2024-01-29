@@ -16,10 +16,7 @@ export const Interactable: React.FC<InteractableProps> = ({
     className,
     ...props
 }) => {
-    const controls = useAnimationControls();
     const cursor = useCursor();
-
-    const [show, setShow] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
     useMouseOn(ref.current, {
@@ -28,76 +25,37 @@ export const Interactable: React.FC<InteractableProps> = ({
 
             const relativeParentRect = ref.current.getBoundingClientRect();
 
-            cursor.setShow(false);
-            setShow(true);
+            cursor.setCOntrolled(true);
 
-            controls.set({
-                left: Number(cursor.position.x) - relativeParentRect.left,
-                top: Number(cursor.position.y) - relativeParentRect.top,
-                width: cursor.radius,
-                height: cursor.radius,
-                transform: "translate(-50%,-50%)",
-            });
-
-            controls.start({
-                top: 0,
-                left: 0,
+            cursor.controls?.start({
+                top: relativeParentRect.top,
+                left: relativeParentRect.left,
                 width: relativeParentRect.width,
                 height: relativeParentRect.width,
                 transform: "translate(0%,0%)",
                 transition: { duration: 0.1 },
             });
         },
-        onLeave: () => {
-            if (!ref.current) return;
+        onLeave: (event) => {
+            const { clientY: top, clientX: left } = event;
 
-            const relativeParentRect = ref.current.getBoundingClientRect();
-
-            controls.set({
-                top: 0,
-                left: 0,
-                width: relativeParentRect.width,
-                height: relativeParentRect.width,
-                transform: "translate(0%,0%)",
-            });
-
-            controls
-                .start({
-                    left: Number(cursor.position.x) - relativeParentRect.left,
-                    top: Number(cursor.position.y) - relativeParentRect.top,
-                    width: cursor.radius,
-                    height: cursor.radius,
+            cursor.controls
+                ?.start({
+                    top,
+                    left,
+                    width: 56,
+                    height: 56,
                     transform: "translate(-50%,-50%)",
-                    transition: { duration: 0.05 },
+                    transition: { duration: 0.02 },
                 })
                 .finally(() => {
-                    cursor.setShow(true);
-                    setShow(false);
+                    cursor.setCOntrolled(false);
                 });
         },
     });
 
     return (
-        <div
-            ref={ref}
-            className={cn("group relative p-2", className)}
-            {...props}
-        >
-            <motion.span
-                className="
-                    absolute 
-                    rounded-full 
-                    border 
-                    border-white 
-                    pointer-events-none
-                "
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: show ? "block" : "none",
-                }}
-                animate={controls}
-            />
+        <div ref={ref} className={cn("group relative", className)} {...props}>
             {children}
         </div>
     );
