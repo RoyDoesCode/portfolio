@@ -2,7 +2,7 @@ import { Montserrat } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"], adjustFontFallback: true });
 
 const Hero = () => {
     return (

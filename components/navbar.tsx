@@ -24,12 +24,12 @@ export const Navbar = () => {
 
     return (
         <div className="flex items-center justify-between p-10">
-            <Interactable>
+            <Interactable margin={40}>
                 <Logo
-                    width={100}
-                    height={100}
+                    width={60}
+                    height={60}
                     onClick={() => router.push("/")}
-                    className="fill-neutral-400 hover:fill-primary transition-colors p-6"
+                    className="fill-neutral-400 hover:fill-primary transition-colors"
                 />
             </Interactable>
             <nav className="flex items-center gap-12">
