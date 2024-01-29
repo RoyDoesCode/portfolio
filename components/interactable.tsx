@@ -1,11 +1,11 @@
 "use client";
 
+import { AnimationDefinition } from "framer-motion";
 import React, { useRef } from "react";
 
 import useCursor from "@/hooks/use-cursor";
 import useMouseOn from "@/hooks/use-mouse-on";
 import { cn } from "@/lib/utils";
-import { AnimationDefinition } from "framer-motion";
 
 interface InteractableProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: "circle" | "fade" | "underline";
@@ -68,9 +68,11 @@ export const Interactable: React.FC<InteractableProps> = ({
 
             const relativeParentRect = ref.current.getBoundingClientRect();
 
-            cursor.setCOntrolled(true);
+            cursor.setControlled(true);
 
             cursor.controls?.start(animationDefinition(relativeParentRect));
+
+            if (type === "circle") cursor.onAnimation();
         },
         onLeave: (event) => {
             const { clientY: top, clientX: left } = event;
@@ -83,9 +85,9 @@ export const Interactable: React.FC<InteractableProps> = ({
                     height: 56,
                     transform: "translate(-50%,-50%)",
                     opacity: 1,
-                    transition: { duration: 0.05 },
+                    transition: { duration: 0.03 },
                 })
-                .finally(() => cursor.setCOntrolled(false));
+                .finally(() => cursor.setControlled(false));
         },
     });
 

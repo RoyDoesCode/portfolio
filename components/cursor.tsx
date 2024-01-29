@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 export const Cursor = () => {
     const controls = useAnimationControls();
+    const borderControls = useAnimationControls();
     const cursor = useCursor();
 
     useMouseOn("document", {
@@ -28,22 +29,61 @@ export const Cursor = () => {
     useEffect(() => {
         cursor.setControls(controls);
 
+        cursor.setOnAnimation(async () => {
+            await borderControls.start({
+                borderTop: "4px solid white",
+                borderRight: "2px solid white",
+                borderBottom: "0px solid white",
+                borderLeft: "2px solid white",
+                rotate: "1turn",
+                transition: {
+                    duration: 0.25,
+                    ease: "easeIn",
+                },
+            });
+            await borderControls.start({
+                borderTop: "1px solid white",
+                borderRight: "1px solid white",
+                borderBottom: "1px solid white",
+                borderLeft: "1px solid white",
+                rotate: "2turn",
+                transition: {
+                    duration: 0.25,
+                    ease: "easeOut",
+                },
+            });
+            borderControls.set({ rotate: "0turn" });
+        });
+
         controls.set({
-            left: -100,
-            top: -100,
+            left: -150,
+            top: -150,
             width: 56,
             height: 56,
             transform: "translate(-50%,-50%)",
+        });
+
+        borderControls.set({
+            borderTop: "1px solid white",
+            borderRight: "1px solid white",
+            borderBottom: "1px solid white",
+            borderLeft: "1px solid white",
+            rotate: "0turn",
         });
     }, []);
 
     return (
         <motion.span
             className={cn(
-                "fixed border border-white rounded-full",
+                "fixed rounded-full z-50 pointer-events-none",
                 !cursor.show && "hidden"
             )}
             animate={controls}
-        />
+        >
+            <motion.div
+                className="w-full h-full rounded-full"
+                animate={borderControls}
+            />
+        </motion.span>
     );
 };

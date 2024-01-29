@@ -1,4 +1,3 @@
-import React from "react";
 import { SocialIcons } from "@/components/social-icons";
 
 export const Footer = () => {
