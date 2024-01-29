@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 import { IconType } from "react-icons";
@@ -34,23 +37,54 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
     ];
 
     return (
-        <div
+        <motion.div
             className={cn(
-                "flex text-neutral-400 p-4",
+                "flex text-neutral-400 p-4 gap-2",
                 direction === "vertical" ? "flex-col" : "flex-row",
                 className
             )}
+            initial="hidden"
+            animate="visible"
+            variants={{
+                visible: {
+                    transition: {
+                        delayChildren: 1,
+                        staggerChildren: 0.1,
+                    },
+                },
+            }}
         >
             {socialIcons.map((socialIcon) => (
-                <Interactable key={socialIcon.href} className="m-2 p-2">
+                <motion.span
+                    key={socialIcon.href}
+                    variants={{
+                        hidden: {
+                            translateY: 50,
+                            scale: 0.5,
+                            opacity: 0,
+                        },
+                        visible: {
+                            translateY: 0,
+                            scale: 1,
+                            opacity: 1,
+                            transition: { duration: 0.5 },
+                        },
+                    }}
+                >
                     <Link
                         href={socialIcon.href}
-                        className="text-neutral-400 group-hover:text-primary transition-colors"
+                        className="
+                            text-neutral-400 
+                            hover:text-primary 
+                            transition-colors
+                        "
                     >
-                        <socialIcon.icon size={size} />
+                        <Interactable className="p-2">
+                            <socialIcon.icon size={size} />
+                        </Interactable>
                     </Link>
-                </Interactable>
+                </motion.span>
             ))}
-        </div>
+        </motion.div>
     );
 };

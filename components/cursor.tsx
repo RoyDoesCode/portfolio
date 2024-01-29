@@ -29,30 +29,20 @@ export const Cursor = () => {
     useEffect(() => {
         cursor.setControls(controls);
 
-        cursor.setOnAnimation(async () => {
-            await borderControls.start({
-                borderTop: "4px solid white",
-                borderRight: "2px solid white",
-                borderBottom: "0px solid white",
-                borderLeft: "2px solid white",
-                rotate: "1turn",
-                transition: {
-                    duration: 0.25,
-                    ease: "easeIn",
-                },
-            });
-            await borderControls.start({
-                borderTop: "1px solid white",
-                borderRight: "1px solid white",
-                borderBottom: "1px solid white",
-                borderLeft: "1px solid white",
+        cursor.setOnAnimation(() => {
+            borderControls.set({ rotate: "0turn" });
+
+            borderControls.start({
+                borderTop: ["4px solid white", "1px solid white"],
+                borderRight: ["2px solid white", "1px solid white"],
+                borderBottom: ["0px solid white", "1px solid white"],
+                borderLeft: ["2px solid white", "1px solid white"],
                 rotate: "2turn",
                 transition: {
-                    duration: 0.25,
-                    ease: "easeOut",
+                    duration: 0.5,
+                    ease: "easeInOut",
                 },
             });
-            borderControls.set({ rotate: "0turn" });
         });
 
         controls.set({
@@ -60,7 +50,9 @@ export const Cursor = () => {
             top: -150,
             width: 56,
             height: 56,
-            transform: "translate(-50%,-50%)",
+            translateX: "-50%",
+            translateY: "-50%",
+            translate: "",
         });
 
         borderControls.set({

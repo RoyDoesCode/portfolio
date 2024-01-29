@@ -34,7 +34,8 @@ export const Interactable: React.FC<InteractableProps> = ({
                     left: rect.left - marginX / 2,
                     width: rect.width + marginX,
                     height: rect.width + marginY,
-                    transform: "translate(0%,0%)",
+                    translateX: "0%",
+                    translateY: "0%",
                     transition: { duration: 0.1 },
                 };
             case "fade":
@@ -44,7 +45,8 @@ export const Interactable: React.FC<InteractableProps> = ({
                     left: rect.left - marginX / 2,
                     width: rect.width + marginX,
                     height: rect.width + marginY,
-                    transform: "translate(0%,0%)",
+                    translateX: "0%",
+                    translateY: "0%",
                     opacity: 0,
                     transition: { duration: 0.1 },
                 };
@@ -53,8 +55,9 @@ export const Interactable: React.FC<InteractableProps> = ({
                     top: rect.bottom + marginY / 2,
                     left: rect.left - marginX / 2,
                     width: rect.width + marginX,
-                    height: 1,
-                    transform: "translate(0%,0%)",
+                    height: 0,
+                    translateX: "0%",
+                    translateY: "0%",
                     transition: { duration: 0.1 },
                 };
             default:
@@ -68,26 +71,24 @@ export const Interactable: React.FC<InteractableProps> = ({
 
             const relativeParentRect = ref.current.getBoundingClientRect();
 
-            cursor.setControlled(true);
-
             cursor.controls?.start(animationDefinition(relativeParentRect));
+            cursor.setControlled(true);
 
             if (type === "circle") cursor.onAnimation();
         },
         onLeave: (event) => {
             const { clientY: top, clientX: left } = event;
 
-            cursor.controls
-                ?.start({
-                    top,
-                    left,
-                    width: 56,
-                    height: 56,
-                    transform: "translate(-50%,-50%)",
-                    opacity: 1,
-                    transition: { duration: 0.03 },
-                })
-                .finally(() => cursor.setControlled(false));
+            cursor.controls?.set({
+                top,
+                left,
+                width: 56,
+                height: 56,
+                translateX: "-50%",
+                translateY: "-50%",
+                opacity: 1,
+            });
+            cursor.setControlled(false);
         },
     });
 

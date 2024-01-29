@@ -1,10 +1,14 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 import { SocialIcons } from "@/components/social-icons";
 
 export const Footer = () => {
     return (
         <div className="flex items-center justify-between p-16">
             <SocialIcons direction="vertical" size={20} />
-            <div
+            <motion.div
                 className="
                     group
                     flex 
@@ -15,6 +19,13 @@ export const Footer = () => {
                     rotate-90
                     p-4
                 "
+                animate={{
+                    opacity: [0, 1],
+                    transition: {
+                        duration: 1,
+                        delay: 0.5,
+                    },
+                }}
             >
                 <span
                     className="
@@ -35,7 +46,7 @@ export const Footer = () => {
                         group-hover:border-primary 
                     "
                 />
-            </div>
+            </motion.div>
         </div>
     );
 };
