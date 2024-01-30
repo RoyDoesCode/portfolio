@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Montserrat } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
-const montserrat = Montserrat({ subsets: ["latin"], adjustFontFallback: true });
+import { montserrat } from "../layout";
 
 const Hero = () => {
     return (
@@ -13,7 +12,6 @@ const Hero = () => {
             className="
                 flex 
                 flex-col 
-                h-[100vh] 
                 items-center 
                 justify-center 
                 overflow-hidden

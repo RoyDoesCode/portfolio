@@ -1,7 +1,13 @@
+import { Montserrat } from "next/font/google";
 import React from "react";
 
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+
+export const montserrat = Montserrat({
+    subsets: ["latin"],
+    adjustFontFallback: false,
+});
 
 export default function HomeLayout({
     children,

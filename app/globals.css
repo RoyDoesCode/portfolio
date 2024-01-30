@@ -11,6 +11,8 @@ body,
 :root {
     --main-bg-gradient-1: #3f4044c0;
     --main-bg-gradient-2: #010102c0;
+    --section-title-gradient-1: #75767a;
+    --section-title-gradient-2: transparent;
 }
 
 * {
@@ -120,4 +122,14 @@ body,
             var(--main-bg-gradient-2) 75%
         ),
         url(https://grainy-gradients.vercel.app/noise.svg);
+}
+
+.section-title {
+    background: linear-gradient(
+        var(--section-title-gradient-1),
+        var(--section-title-gradient-2) 70%
+    );
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-wrap: nowrap;
 }
