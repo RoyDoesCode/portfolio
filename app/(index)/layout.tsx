@@ -10,11 +10,11 @@ export default function HomeLayout({
 }) {
     return (
         <>
-            <div className="fixed top-0 w-full">
+            <div className="fixed top-0 w-full z-50">
                 <Navbar />
             </div>
-            <main className="p-48 h-full">{children}</main>
-            <div className="fixed bottom-0 w-full">
+            <main className="h-full">{children}</main>
+            <div className="fixed bottom-0 w-full z-50">
                 <Footer />
             </div>
         </>

@@ -30,14 +30,28 @@ export const Cursor = () => {
         cursor.setControls(controls);
 
         cursor.setOnAnimation(() => {
-            borderControls.set({ rotate: "0turn" });
-
             borderControls.start({
-                borderTop: ["4px solid white", "1px solid white"],
-                borderRight: ["2px solid white", "1px solid white"],
-                borderBottom: ["0px solid white", "1px solid white"],
-                borderLeft: ["2px solid white", "1px solid white"],
-                rotate: "2turn",
+                borderTop: [
+                    "1px solid white",
+                    "4px solid white",
+                    "1px solid white",
+                ],
+                borderRight: [
+                    "1px solid white",
+                    "2px solid white",
+                    "1px solid white",
+                ],
+                borderBottom: [
+                    "1px solid white",
+                    "0px solid white",
+                    "1px solid white",
+                ],
+                borderLeft: [
+                    "1px solid white",
+                    "2px solid white",
+                    "1px solid white",
+                ],
+                rotate: ["0turn", "1turn", "2turn"],
                 transition: {
                     duration: 0.5,
                     ease: "easeInOut",

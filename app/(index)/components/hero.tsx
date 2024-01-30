@@ -13,7 +13,7 @@ const Hero = () => {
             className="
                 flex 
                 flex-col 
-                h-full 
+                h-[100vh] 
                 items-center 
                 justify-center 
                 overflow-hidden
@@ -37,14 +37,22 @@ const Hero = () => {
             </motion.small>
             <motion.h1
                 className={cn(
-                    `text-[150pt] 
+                    `relative 
+                    text-[150pt] 
                     font-black 
-                    drop-shadow-2xl 
                     leading-none 
                     select-none 
                     hover:text-white 
                     transition-colors
-                    duration-500`,
+                    duration-500 
+                    before:inset-0
+                    before:top-1/3 
+                    before:absolute 
+                    before:bg-black
+                    before:rounded-3xl
+                    before:-z-10
+                    before:blur-2xl
+                    before:opacity-50`,
                     montserrat.className
                 )}
                 animate={{ opacity: [0, 0.75, 1], scale: [0.75, 1.1, 1] }}
