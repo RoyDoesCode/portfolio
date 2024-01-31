@@ -11,13 +11,13 @@ import { Interactable } from "@/components/interactable";
 import { cn } from "@/lib/utils";
 
 interface SocialIconsProps {
-    direction?: "vertical" | "horizontal";
+    orientation?: "vertical" | "horizontal";
     size?: string | number;
     className?: string;
 }
 
 export const SocialIcons: React.FC<SocialIconsProps> = ({
-    direction = "vertical",
+    orientation = "vertical",
     size,
     className,
 }) => {
@@ -40,7 +40,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
         <motion.div
             className={cn(
                 "flex text-neutral-400 p-4 gap-2",
-                direction === "vertical" ? "flex-col" : "flex-row",
+                orientation === "vertical" ? "flex-col" : "flex-row",
                 className
             )}
             initial="hidden"

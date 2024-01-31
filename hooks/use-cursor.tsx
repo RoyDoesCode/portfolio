@@ -1,8 +1,5 @@
-import { CSSProperties } from "react";
-import { create } from "zustand";
-
-import { Position } from "@/types";
 import { AnimationControls } from "framer-motion";
+import { create } from "zustand";
 
 interface CursorStore {
     show: boolean;
