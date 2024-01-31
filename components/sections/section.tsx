@@ -9,15 +9,24 @@ import { cn } from "@/lib/utils";
 interface SectionProps {
     children: React.ReactNode;
     title: string;
+    parallaxDistance: number;
 }
 
-export const Section: React.FC<SectionProps> = ({ children, title }) => {
+export const Section: React.FC<SectionProps> = ({
+    children,
+    title,
+    parallaxDistance,
+}) => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
         offset: ["end end", "start start"],
     });
-    const y = useTransform(scrollYProgress, [0, 1], [300, -300]);
+    const y = useTransform(
+        scrollYProgress,
+        [0, 1],
+        [parallaxDistance, -parallaxDistance]
+    );
 
     return (
         <section className="relative">
@@ -46,7 +55,9 @@ export const Section: React.FC<SectionProps> = ({ children, title }) => {
                     {title}
                 </motion.h2>
             </div>
-            <div ref={ref}>{children}</div>
+            <div ref={ref} className="z-10">
+                {children}
+            </div>
         </section>
     );
 };
