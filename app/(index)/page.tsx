@@ -1,5 +1,6 @@
 "use client";
 
+import AboutMe from "@/components/sections/about-me";
 import Hero from "@/components/sections/hero";
 import { Section } from "@/components/sections/section";
 
@@ -10,7 +11,7 @@ const Home = () => {
                 <Hero />
             </Section>
             <Section title="ABOUT ME">
-                <Hero />
+                <AboutMe />
             </Section>
             <Section title="PROJECTS">
                 <Hero />
