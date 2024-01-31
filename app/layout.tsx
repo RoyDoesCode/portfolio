@@ -3,8 +3,8 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 
-import { Background } from "@/components/background";
 import { Cursor } from "@/components/cursor";
+import { Background } from "@/components/layout/background";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 const CeraCY = localFont({

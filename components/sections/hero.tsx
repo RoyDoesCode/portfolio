@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
-import { montserrat } from "../layout";
+import { montserrat } from "../../app/(index)/layout";
 
 const Hero = () => {
     return (

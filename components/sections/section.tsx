@@ -24,9 +24,9 @@ export const Section: React.FC<SectionProps> = ({ children, title }) => {
             <div
                 className="
                     absolute 
-                    top-1/4 
+                    top-1/4
                     left-1/2
-                    text-[200pt] 
+                    text-[15vw]
                     font-black
                     -translate-x-1/2
                     -translate-y-1/2

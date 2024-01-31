@@ -1,7 +1,7 @@
 "use client";
 
-import Hero from "./components/hero";
-import { Section } from "@/components/section";
+import Hero from "@/components/sections/hero";
+import { Section } from "@/components/sections/section";
 
 const Home = () => {
     return (
@@ -12,7 +12,7 @@ const Home = () => {
             <Section title="ABOUT ME">
                 <Hero />
             </Section>
-            <Section title="PROJECT">
+            <Section title="PROJECTS">
                 <Hero />
             </Section>
         </div>
