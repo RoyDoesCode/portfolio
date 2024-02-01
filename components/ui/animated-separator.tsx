@@ -1,7 +1,7 @@
 "use client";
 
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 
 interface AnimatedSeparatorProps {
     orientation: "vertical" | "horizontal";
@@ -10,6 +10,8 @@ interface AnimatedSeparatorProps {
     gap?: CSSProperties["gap"];
     dashLength?: CSSProperties["width"];
     animationTime?: number;
+    delay?: number;
+    reversed?: boolean;
 }
 
 export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
@@ -18,7 +20,9 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
     thickness = 1,
     gap = 10,
     dashLength = 10,
-    animationTime = 1,
+    animationTime = 2,
+    delay = 0,
+    reversed,
 }) => {
     const [dashCount, setDashCount] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
@@ -42,8 +46,16 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
 
     const containerStyle: CSSProperties =
         orientation === "vertical"
-            ? { height: "100%", width: thickness, flexDirection: "column" }
-            : { width: "100%", height: thickness, flexDirection: "row" };
+            ? {
+                  height: "100%",
+                  width: thickness,
+                  flexDirection: reversed ? "column" : "column-reverse",
+              }
+            : {
+                  width: "100%",
+                  height: thickness,
+                  flexDirection: reversed ? "row" : "row-reverse",
+              };
 
     const dashStyle: CSSProperties =
         orientation === "vertical"
@@ -60,6 +72,7 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
             variants={{
                 visible: {
                     transition: {
+                        delayChildren: delay,
                         staggerChildren: animationTime / dashCount,
                     },
                 },
