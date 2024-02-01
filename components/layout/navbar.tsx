@@ -15,15 +15,15 @@ export const Navbar = () => {
     const routes = [
         {
             name: "About me",
-            path: "/about-me",
+            path: "/#about-me",
         },
         {
             name: "Projects",
-            path: "/projects",
+            path: "/#projects",
         },
         {
             name: "Contact",
-            path: "/contact",
+            path: "/#contact",
         },
     ];
 

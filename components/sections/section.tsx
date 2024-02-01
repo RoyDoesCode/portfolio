@@ -1,12 +1,12 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React, { HTMLAttributes, useRef } from "react";
 
 import { montserrat } from "@/app/(index)/layout";
 import { cn } from "@/lib/utils";
 
-interface SectionProps {
+interface SectionProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;
     title: string;
     parallaxDistance: number;
@@ -16,6 +16,7 @@ export const Section: React.FC<SectionProps> = ({
     children,
     title,
     parallaxDistance,
+    ...props
 }) => {
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -29,7 +30,7 @@ export const Section: React.FC<SectionProps> = ({
     );
 
     return (
-        <section className="relative">
+        <section className="relative" {...props}>
             <div
                 className="
                     absolute 
