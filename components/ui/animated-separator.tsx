@@ -1,14 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { HTMLMotionProps, motion } from "framer-motion";
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
 
-interface AnimatedSeparatorProps {
+import { cn } from "@/lib/utils";
+
+interface AnimatedSeparatorProps extends HTMLMotionProps<"div"> {
     orientation: "vertical" | "horizontal";
-    color?: CSSProperties["backgroundColor"];
     thickness?: CSSProperties["width"];
     gap?: CSSProperties["gap"];
     dashLength?: CSSProperties["width"];
+    dashClass?: string;
     animationTime?: number;
     delay?: number;
     reversed?: boolean;
@@ -16,13 +18,15 @@ interface AnimatedSeparatorProps {
 
 export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
     orientation,
-    color = "white",
     thickness = 1,
     gap = 10,
     dashLength = 10,
+    dashClass,
     animationTime = 2,
     delay = 0,
     reversed,
+    style,
+    ...props
 }) => {
     const [dashCount, setDashCount] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
@@ -80,12 +84,15 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
             style={{
                 gap,
                 ...containerStyle,
+                ...style,
             }}
+            {...props}
         >
             {Array.from({ length: dashCount }, (_, index) => (
                 <motion.span
+                    className={cn("bg-primary", dashClass)}
                     key={index}
-                    style={{ background: color, ...dashStyle }}
+                    style={dashStyle}
                     variants={{
                         hidden: {
                             opacity: 0,
