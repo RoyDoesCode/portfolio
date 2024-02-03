@@ -9,8 +9,8 @@ body,
 }
 
 :root {
-    --main-bg-gradient-1: #3f4044c0;
-    --main-bg-gradient-2: #010102c0;
+    --main-bg-gradient-1: #3f4044d0;
+    --main-bg-gradient-2: #010102d0;
     --section-title-gradient-1: #75767a;
     --section-title-gradient-2: transparent;
 }
@@ -136,4 +136,10 @@ body,
 
 .transparent-box {
     box-shadow: -5px 15px 30px 10px rgba(0, 0, 0, 0.5);
+}
+
+.image-shadow::after {
+    position: absolute;
+    inset: 0;
+    background: red;
 }

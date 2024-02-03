@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 interface AnimatedSeparatorProps extends HTMLMotionProps<"div"> {
     orientation: "vertical" | "horizontal";
     thickness?: CSSProperties["width"];
-    gap?: CSSProperties["gap"];
+    spacing?: CSSProperties["gap"];
     dashLength?: CSSProperties["width"];
     dashClass?: string;
     animationTime?: number;
@@ -19,7 +19,7 @@ interface AnimatedSeparatorProps extends HTMLMotionProps<"div"> {
 export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
     orientation,
     thickness = 1,
-    gap = 10,
+    spacing = 10,
     dashLength = 10,
     dashClass,
     animationTime = 2,
@@ -41,7 +41,8 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
 
             const dashCount = Math.ceil(
                 targetLength /
-                    (parseInt(gap.toString()) + parseInt(dashLength.toString()))
+                    (parseInt(spacing.toString()) +
+                        parseInt(dashLength.toString()))
             );
 
             setDashCount(dashCount);
@@ -82,7 +83,7 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
                 },
             }}
             style={{
-                gap,
+                gap: spacing,
                 ...containerStyle,
                 ...style,
             }}

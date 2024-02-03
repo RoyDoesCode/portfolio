@@ -7,7 +7,7 @@ import { SocialIcons } from "@/components/social-icons";
 export const Footer = () => {
     return (
         <div className="flex items-center justify-between p-16">
-            <SocialIcons orientation="vertical" size={20} />
+            <SocialIcons orientation="vertical" size={20} className="p-4" />
             <motion.div
                 className="
                     group
