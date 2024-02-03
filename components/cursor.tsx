@@ -20,6 +20,10 @@ export const Cursor = () => {
                 controls.set({
                     top,
                     left,
+                    width: 56,
+                    height: 56,
+                    translateX: "-50%",
+                    translateY: "-50%",
                 });
             }
         },
@@ -66,7 +70,6 @@ export const Cursor = () => {
             height: 56,
             translateX: "-50%",
             translateY: "-50%",
-            translate: "",
         });
 
         borderControls.set({
