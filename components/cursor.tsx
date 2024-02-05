@@ -3,8 +3,8 @@
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 
-import useCursor from "@/hooks/use-cursor";
-import useMouseOn from "@/hooks/use-mouse-on";
+import useCursor from "@/hooks/useCursor";
+import useMouseOn from "@/hooks/useMouseOn";
 import { cn } from "@/lib/utils";
 
 export const Cursor = () => {

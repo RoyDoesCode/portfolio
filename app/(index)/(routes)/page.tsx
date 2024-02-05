@@ -11,7 +11,7 @@ const Home = () => {
             <Section id="home" title="WELCOME" parallaxDistance={300}>
                 <Hero />
             </Section>
-            <Section id="about-me" title="ABOUT ME" parallaxDistance={650}>
+            <Section id="about-me" title="ABOUT ME" parallaxDistance={500}>
                 <AboutMe />
             </Section>
             <Section id="projects" title="PROJECTS" parallaxDistance={300}>

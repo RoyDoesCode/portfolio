@@ -16,8 +16,10 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import useIsMounted from "@/hooks/useIsMounted";
 
 export const Navbar = () => {
+    const isMounted = useIsMounted();
     const router = useRouter();
     const pathname = usePathname();
 
@@ -35,6 +37,10 @@ export const Navbar = () => {
             path: "/#contact",
         },
     ];
+
+    if (!isMounted) {
+        return null;
+    }
 
     return (
         <div className="flex items-center justify-between p-10">
@@ -111,14 +117,14 @@ export const Navbar = () => {
                     Open
                 </SheetTrigger>
                 <SheetContent>
-                    <SheetHeader>
+                    {/* <SheetHeader>
                         <SheetTitle>Are you absolutely sure?</SheetTitle>
                         <SheetDescription>
                             This action cannot be undone. This will permanently
                             delete your account and remove your data from our
                             servers.
                         </SheetDescription>
-                    </SheetHeader>
+                    </SheetHeader> */}
                 </SheetContent>
             </Sheet>
         </div>

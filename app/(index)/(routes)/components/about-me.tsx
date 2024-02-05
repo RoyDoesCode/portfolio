@@ -36,18 +36,18 @@ const AboutMe = () => {
                 <div className="relative w-1/2 scale-125 translate-y-12">
                     <div
                         className="
-                                absolute 
-                                bg-black 
-                                rounded-3xl
-                                blur-xl
-                                opacity-50
-                                -inset-6
-                                top-8
-                                -z-10
-                            "
+                            absolute 
+                            bg-black 
+                            rounded-3xl
+                            blur-xl
+                            opacity-50
+                            -inset-6
+                            top-8
+                            -z-10
+                        "
                     />
                     <Image
-                        src="/Me2.png"
+                        src="/Roy Barzilay.png"
                         alt="Profile Image"
                         width={1920}
                         height={2742}

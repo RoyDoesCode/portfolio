@@ -3,14 +3,16 @@
 import { AnimationDefinition } from "framer-motion";
 import React, { useRef } from "react";
 
-import useCursor from "@/hooks/use-cursor";
-import useMouseOn from "@/hooks/use-mouse-on";
+import useCursor from "@/hooks/useCursor";
+import useMouseOn from "@/hooks/useMouseOn";
 import { cn } from "@/lib/utils";
+import useIsMounted from "@/hooks/useIsMounted";
 
 interface InteractableProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: "circle" | "fade" | "underline";
     marginX?: number;
     marginY?: number;
+    resetOnClick?: boolean;
     children: React.ReactNode;
 }
 
@@ -18,10 +20,12 @@ export const Interactable: React.FC<InteractableProps> = ({
     type = "circle",
     marginX = 0,
     marginY = 0,
+    resetOnClick = false,
     children,
     className,
     ...props
 }) => {
+    const isMounted = useIsMounted();
     const cursor = useCursor();
     const ref = useRef<HTMLDivElement>(null);
 
@@ -65,32 +69,42 @@ export const Interactable: React.FC<InteractableProps> = ({
         }
     };
 
-    useMouseOn(ref.current, {
-        onEnter: () => {
-            if (!ref.current) return;
+    const handleAnimateCursor = () => {
+        if (!ref.current) return;
 
-            const relativeParentRect = ref.current.getBoundingClientRect();
+        const relativeParentRect = ref.current.getBoundingClientRect();
 
-            cursor.controls?.start(animationDefinition(relativeParentRect));
-            cursor.setControlled(true);
+        cursor.controls?.start(animationDefinition(relativeParentRect));
+        cursor.setControlled(true);
 
-            if (type === "circle") cursor.onAnimation();
+        if (type === "circle") cursor.onAnimation();
+    };
+
+    const handleResetCursor = (event: MouseEvent) => {
+        const { clientY: top, clientX: left } = event;
+
+        cursor.controls?.set({
+            top,
+            left,
+            width: 56,
+            height: 56,
+            translateX: "-50%",
+            translateY: "-50%",
+            opacity: 1,
+        });
+
+        cursor.setControlled(false);
+    };
+
+    useMouseOn(
+        ref.current,
+        {
+            onEnter: handleAnimateCursor,
+            onLeave: handleResetCursor,
+            onClick: resetOnClick ? handleResetCursor : undefined,
         },
-        onLeave: (event) => {
-            const { clientY: top, clientX: left } = event;
-
-            cursor.controls?.set({
-                top,
-                left,
-                width: 56,
-                height: 56,
-                translateX: "-50%",
-                translateY: "-50%",
-                opacity: 1,
-            });
-            cursor.setControlled(false);
-        },
-    });
+        [isMounted]
+    );
 
     return (
         <div ref={ref} className={cn("group relative", className)} {...props}>

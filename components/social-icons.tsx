@@ -79,7 +79,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
                             transition-colors
                         "
                     >
-                        <Interactable className="p-2">
+                        <Interactable className="p-2" resetOnClick>
                             <socialIcon.icon size={size} />
                         </Interactable>
                     </Link>

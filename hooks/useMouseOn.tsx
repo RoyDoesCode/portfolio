@@ -6,23 +6,29 @@ const useMouseOn = (
         onEnter?: (event: MouseEvent) => void;
         onLeave?: (event: MouseEvent) => void;
         onMove?: (event: MouseEvent) => void;
-    }
+        onClick?: (event: MouseEvent) => void;
+    },
+    dependenices: any[] = []
 ) => {
-    const [isMouseOnScreen, setIsMouseOnScreen] = useState(false);
+    const [isMouseOnElement, setIsMouseOnElement] = useState(false);
 
     const handleMouseEnter: EventListener = (event) => {
-        setIsMouseOnScreen(true);
+        setIsMouseOnElement(true);
         options?.onEnter?.(event as MouseEvent);
     };
 
     const handleMouseMove: EventListener = (event) => {
-        setIsMouseOnScreen(true);
+        setIsMouseOnElement(true);
         options?.onMove?.(event as MouseEvent);
     };
 
     const handleMouseLeave: EventListener = (event) => {
-        setIsMouseOnScreen(false);
+        setIsMouseOnElement(false);
         options?.onLeave?.(event as MouseEvent);
+    };
+
+    const handleMouseClick: EventListener = (event) => {
+        options?.onClick?.(event as MouseEvent);
     };
 
     useEffect(() => {
@@ -31,15 +37,24 @@ const useMouseOn = (
         target?.addEventListener("mouseenter", handleMouseEnter);
         target?.addEventListener("mousemove", handleMouseMove);
         target?.addEventListener("mouseleave", handleMouseLeave);
+        target?.addEventListener("click", handleMouseClick);
 
         return () => {
             target?.removeEventListener("mouseenter", handleMouseEnter);
             target?.removeEventListener("mousemove", handleMouseMove);
             target?.removeEventListener("mouseleave", handleMouseLeave);
+            target?.removeEventListener("click", handleMouseClick);
         };
-    }, [element, options?.onEnter, options?.onLeave, options?.onMove]);
+    }, [
+        element,
+        options?.onEnter,
+        options?.onLeave,
+        options?.onMove,
+        options?.onClick,
+        ...dependenices,
+    ]);
 
-    return isMouseOnScreen;
+    return isMouseOnElement;
 };
 
 export default useMouseOn;
