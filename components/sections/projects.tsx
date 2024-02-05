@@ -1,9 +1,5 @@
-import React from "react";
-
 const Projects = () => {
-    return (
-        <div className="flex justify-center items-center m-48">Projects</div>
-    );
+    return <div className="flex justify-center items-center p-48"></div>;
 };
 
 export default Projects;

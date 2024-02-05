@@ -6,6 +6,15 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { Interactable } from "@/components/interactable";
 import { Logo } from "@/components/logo";
+import {
+    Sheet,
+    SheetClose,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
@@ -53,7 +62,7 @@ export const Navbar = () => {
                 </Interactable>
             </motion.span>
             <motion.nav
-                className="flex items-center gap-12 pointer-events-auto"
+                className="items-center gap-12 pointer-events-auto hidden md:flex"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -97,6 +106,21 @@ export const Navbar = () => {
                     </motion.span>
                 ))}
             </motion.nav>
+            <Sheet>
+                <SheetTrigger className="pointer-events-auto block md:hidden">
+                    Open
+                </SheetTrigger>
+                <SheetContent>
+                    <SheetHeader>
+                        <SheetTitle>Are you absolutely sure?</SheetTitle>
+                        <SheetDescription>
+                            This action cannot be undone. This will permanently
+                            delete your account and remove your data from our
+                            servers.
+                        </SheetDescription>
+                    </SheetHeader>
+                </SheetContent>
+            </Sheet>
         </div>
     );
 };

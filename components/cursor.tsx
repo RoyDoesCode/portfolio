@@ -84,7 +84,7 @@ export const Cursor = () => {
     return (
         <motion.span
             className={cn(
-                "fixed rounded-full z-50 pointer-events-none",
+                "fixed rounded-full z-[100] pointer-events-none",
                 !cursor.show && "hidden"
             )}
             animate={controls}
