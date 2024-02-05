@@ -2,26 +2,20 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { CgMenuGridO } from "react-icons/cg";
 
 import { Interactable } from "@/components/interactable";
 import { Logo } from "@/components/logo";
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import useIsMounted from "@/hooks/useIsMounted";
 
 export const Navbar = () => {
     const isMounted = useIsMounted();
     const router = useRouter();
-    const pathname = usePathname();
+
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const routes = [
         {
@@ -94,17 +88,14 @@ export const Navbar = () => {
                         <Interactable>
                             <Link
                                 href={route.path}
-                                className={cn(
-                                    `uppercase 
+                                className="
+                                    uppercase 
                                     tracking-widest 
                                     p-4 
                                     text-neutral-400 
                                     hover:text-primary
-                                    transition-colors`,
-                                    route.path === pathname
-                                        ? "text-primary"
-                                        : "text-neutral-400"
-                                )}
+                                    transition-colors
+                                "
                             >
                                 {route.name}
                             </Link>
@@ -112,19 +103,45 @@ export const Navbar = () => {
                     </motion.span>
                 ))}
             </motion.nav>
-            <Sheet>
-                <SheetTrigger className="pointer-events-auto block md:hidden">
-                    Open
+            <Sheet
+                open={sidebarOpen}
+                onOpenChange={(open) => setSidebarOpen(open)}
+            >
+                <SheetTrigger
+                    // onClick={() => setSidebarOpen(true)}
+                    className="
+                        pointer-events-auto 
+                        block 
+                        md:hidden 
+                        text-neutral-400 
+                        hover:text-primary 
+                        transition-colors
+                    "
+                >
+                    <Interactable className="p-2">
+                        <CgMenuGridO size={30} />
+                    </Interactable>
                 </SheetTrigger>
                 <SheetContent>
-                    {/* <SheetHeader>
-                        <SheetTitle>Are you absolutely sure?</SheetTitle>
-                        <SheetDescription>
-                            This action cannot be undone. This will permanently
-                            delete your account and remove your data from our
-                            servers.
-                        </SheetDescription>
-                    </SheetHeader> */}
+                    <nav className="flex flex-col items-center gap-2 pt-8">
+                        {routes.map((route) => (
+                            <Link
+                                key={route.path}
+                                href={route.path}
+                                onClick={() => setSidebarOpen(false)}
+                                className="
+                                    uppercase 
+                                    tracking-widest 
+                                    p-4 
+                                    text-neutral-400 
+                                    hover:text-primary
+                                    transition-colors
+                                "
+                            >
+                                {route.name}
+                            </Link>
+                        ))}
+                    </nav>
                 </SheetContent>
             </Sheet>
         </div>
