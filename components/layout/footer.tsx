@@ -18,6 +18,7 @@ export const Footer = () => {
                     gap-4 
                     rotate-90
                     p-4
+                    pointer-events-auto
                 "
                 animate={{
                     opacity: [0, 1],

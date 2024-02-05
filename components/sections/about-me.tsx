@@ -32,7 +32,7 @@ const AboutMe = () => {
             <div
                 className=" 
                     transparent-box
-                    w-[65vw] 
+                    w-[65vw]/ 
                     flex
                     flex-row
                     gap-20
@@ -40,8 +40,8 @@ const AboutMe = () => {
                     pb-16
                 "
             >
-                <div className="relative flex-1">
-                    <div className="absolute -top-10">
+                <div className="relative w-1/2">
+                    <div className="absolute -bottom-1/4 left-1/4">
                         <div
                             className="
                                 absolute 
@@ -62,7 +62,7 @@ const AboutMe = () => {
                         />
                     </div>
                 </div>
-                <div className="flex flex-1 flex-col gap-8">
+                <div className="flex w-1/2 flex-col gap-8">
                     <AnimatedSeparator
                         orientation="horizontal"
                         style={{ width: "30%" }}

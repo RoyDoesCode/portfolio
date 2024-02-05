@@ -39,7 +39,7 @@ export const SocialIcons: React.FC<SocialIconsProps> = ({
     return (
         <motion.div
             className={cn(
-                "flex text-neutral-400 gap-2",
+                "flex text-neutral-400 gap-2 pointer-events-auto",
                 orientation === "vertical" ? "flex-col" : "flex-row",
                 className
             )}

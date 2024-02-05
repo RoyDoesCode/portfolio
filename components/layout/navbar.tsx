@@ -30,6 +30,7 @@ export const Navbar = () => {
     return (
         <div className="flex items-center justify-between p-10">
             <motion.span
+                className="pointer-events-auto"
                 animate={{
                     opacity: [0, 1],
                     transition: {
@@ -52,7 +53,7 @@ export const Navbar = () => {
                 </Interactable>
             </motion.span>
             <motion.nav
-                className="flex items-center gap-12"
+                className="flex items-center gap-12 pointer-events-auto"
                 initial="hidden"
                 animate="visible"
                 variants={{

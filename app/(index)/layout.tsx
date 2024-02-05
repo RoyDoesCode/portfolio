@@ -16,11 +16,11 @@ export default function HomeLayout({
 }) {
     return (
         <>
-            <div className="fixed top-0 w-full z-50">
+            <div className="fixed top-0 w-full z-50 pointer-events-none">
                 <Navbar />
             </div>
             <main className="h-full">{children}</main>
-            <div className="fixed bottom-0 w-full z-50">
+            <div className="fixed bottom-0 w-full z-50 pointer-events-none">
                 <Footer />
             </div>
         </>
