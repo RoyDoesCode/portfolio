@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import localFont from "next/font/local";
+import Image from "next/image";
 
 import { SocialIcons } from "@/components/social-icons";
 import { AnimatedSeparator } from "@/components/ui/animated-separator";
 import { Header } from "@/components/ui/header";
 import useIsMounted from "@/hooks/useIsMounted";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
 const CreattionDemo = localFont({
     src: "../../fonts/Creattion Demo.otf",
@@ -28,22 +28,20 @@ const AboutMe = () => {
     }
 
     return (
-        <div className="flex justify-center items-center">
+        <div className="relative flex justify-center items-center m-48">
             <div
                 className=" 
                     transparent-box
-                    w-[65vw]/ 
                     flex
                     flex-row
-                    gap-20
+                    gap-28
                     p-32
                     pb-16
                 "
             >
-                <div className="relative w-1/2">
-                    <div className="absolute -bottom-1/4 left-1/4">
-                        <div
-                            className="
+                <div className="relative w-1/2 scale-125 translate-y-12">
+                    <div
+                        className="
                                 absolute 
                                 bg-black 
                                 rounded-3xl
@@ -53,14 +51,13 @@ const AboutMe = () => {
                                 top-8
                                 -z-10
                             "
-                        />
-                        <Image
-                            src="/Me2.png"
-                            alt="Profile Image"
-                            width={1920}
-                            height={2742}
-                        />
-                    </div>
+                    />
+                    <Image
+                        src="/Me2.png"
+                        alt="Profile Image"
+                        width={1920}
+                        height={2742}
+                    />
                 </div>
                 <div className="flex w-1/2 flex-col gap-8">
                     <AnimatedSeparator
