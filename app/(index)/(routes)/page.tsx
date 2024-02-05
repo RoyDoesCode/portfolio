@@ -1,9 +1,9 @@
 "use client";
 
-import AboutMe from "@/components/sections/about-me";
-import Hero from "@/components/sections/hero";
-import Projects from "@/components/sections/projects";
-import { Section } from "@/components/sections/section";
+import AboutMe from "@/app/(index)/(routes)/components/about-me";
+import Hero from "@/app/(index)/(routes)/components/hero";
+import Projects from "@/app/(index)/(routes)/components/projects";
+import { Section } from "@/app/(index)/(routes)/components/section";
 
 const Home = () => {
     return (

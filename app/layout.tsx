@@ -1,26 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import localFont from "next/font/local";
-
+import { Background } from "@/app/(index)/components/background";
 import { Cursor } from "@/components/cursor";
-import { Background } from "@/components/layout/background";
 import { ThemeProvider } from "@/providers/theme-provider";
-
-const CeraCY = localFont({
-    src: [
-        {
-            path: "../fonts/Cera CY Regular.ttf",
-            weight: "400",
-            style: "normal",
-        },
-        {
-            path: "../fonts/Cera CY Bold.ttf",
-            weight: "700",
-            style: "normal",
-        },
-    ],
-});
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -34,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={CeraCY.className}>
+            <body style={{ fontFamily: "Cera CY" }}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"

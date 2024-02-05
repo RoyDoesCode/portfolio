@@ -98,6 +98,27 @@ body,
     }
 }
 
+@font-face {
+    font-family: "Cera CY";
+    src: url("./fonts/Cera CY Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Cera CY";
+    src: url("./fonts/Cera CY Bold.ttf");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Creattion Demo";
+    src: url("./fonts/Creattion Demo.otf");
+    font-weight: normal;
+    font-style: normal;
+}
+
 #main-background {
     background: -webkit-radial-gradient(
             circle at 35% 40px,

@@ -1,8 +1,8 @@
 import { Montserrat } from "next/font/google";
 import React from "react";
 
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/app/(index)/components/footer";
+import { Navbar } from "@/app/(index)/components/navbar";
 
 export const montserrat = Montserrat({
     subsets: ["latin"],

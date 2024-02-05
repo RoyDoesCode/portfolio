@@ -1,18 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import localFont from "next/font/local";
 import Image from "next/image";
 
 import { SocialIcons } from "@/components/social-icons";
 import { AnimatedSeparator } from "@/components/ui/animated-separator";
 import { Header } from "@/components/ui/header";
 import useIsMounted from "@/hooks/useIsMounted";
-import { cn } from "@/lib/utils";
-
-const CreattionDemo = localFont({
-    src: "../../fonts/Creattion Demo.otf",
-});
 
 const line = `I'm a web developer who's not your typical tech geek. 
     Spent some time in the army, worked with a bunch of different clients, 
@@ -96,7 +90,10 @@ const AboutMe = () => {
                             </motion.span>
                         ))}
                     </motion.p>
-                    <span className={cn("text-6xl", CreattionDemo.className)}>
+                    <span
+                        className="text-6xl"
+                        style={{ fontFamily: "Creattion Demo" }}
+                    >
                         Roybarzilay
                     </span>
                     <SocialIcons orientation="horizontal" />
