@@ -53,7 +53,7 @@ export const Section: React.FC<SectionProps> = ({
                         duration: 3,
                     }}
                 >
-                    {title}
+                    {/* {title} */}
                 </motion.h2>
             </div>
             <div ref={ref} className="z-10">

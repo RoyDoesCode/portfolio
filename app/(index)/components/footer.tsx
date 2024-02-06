@@ -3,23 +3,27 @@
 import { motion } from "framer-motion";
 
 import { SocialIcons } from "@/components/social-icons";
+import useScrollProgress from "@/hooks/useScrollProgress";
+import { cn } from "@/lib/utils";
 
 export const Footer = () => {
+    const scrollProgress = useScrollProgress();
+
     return (
-        <div className="flex items-center justify-between p-16">
+        <div className="items-center justify-between p-16 hidden md:flex">
             <SocialIcons orientation="vertical" size={20} className="p-4" />
             <motion.div
-                className="
-                    group
-                    flex 
+                className={cn(
+                    `group
                     items-center 
                     justify-end
                     w-48
                     gap-4 
                     rotate-90
                     p-4
-                    pointer-events-auto
-                "
+                    pointer-events-auto`,
+                    scrollProgress.amount > 50 ? "hidden" : "flex"
+                )}
                 animate={{
                     opacity: [0, 1],
                     transition: {

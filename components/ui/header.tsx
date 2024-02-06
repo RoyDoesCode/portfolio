@@ -13,7 +13,7 @@ export const Header: React.FC<HeaderProps> = ({ title, description }) => {
         <div className="flex flex-col gap-2">
             <div
                 className={cn(
-                    "font-black text-primary text-6xl uppercase text-nowrap",
+                    "font-black text-primary text-5xl uppercase",
                     montserrat.className
                 )}
             >
@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({ title, description }) => {
             </div>
             <div
                 className={cn(
-                    "text-neutral-400 text-2xl text-nowrap tracking-wide opacity-50",
+                    "text-neutral-400 text-2xl tracking-wide opacity-50",
                     montserrat.className
                 )}
             >

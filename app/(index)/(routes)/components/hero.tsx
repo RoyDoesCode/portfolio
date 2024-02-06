@@ -36,7 +36,9 @@ const Hero = () => {
             <motion.h1
                 className={cn(
                     `relative 
-                    text-[150pt] 
+                    text-[100pt]
+                    md:text-[125pt]
+                    lg:text-[150pt] 
                     font-black 
                     leading-none 
                     select-none 
