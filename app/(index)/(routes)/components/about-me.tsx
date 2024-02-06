@@ -27,17 +27,14 @@ const AboutMe = () => {
                 className=" 
                     transparent-box
                     flex
-                    flex-col
+                    flex-col-reverse
                     lg:flex-row
                     gap-28
-                    pb-20
-                    px-24
-                    pt-24
-                    md:px-32
-                    md:pt-32
+                    p-24
+                    md:p-32
                 "
             >
-                <div className="relative w-full lg:w-[40%] lg:scale-[1.4] lg:translate-y-12">
+                <div className="relative w-full lg:w-[40%] lg:scale-[1]">
                     <div
                         className="
                             absolute 
@@ -59,7 +56,7 @@ const AboutMe = () => {
                         className="object-cover w-full h-full contrast-[.90]"
                     />
                 </div>
-                <div className="flex w-full lg:w-[60%] flex-col gap-8">
+                <div className="flex w-full lg:w-[60%] flex-col gap-8 justify-center">
                     <AnimatedSeparator
                         orientation="horizontal"
                         style={{ width: "30%" }}

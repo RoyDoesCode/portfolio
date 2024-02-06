@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CgMenuGridO } from "react-icons/cg";
@@ -10,6 +9,7 @@ import { Interactable } from "@/components/interactable";
 import { Logo } from "@/components/logo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import useIsMounted from "@/hooks/useIsMounted";
+import { scrollTowards } from "@/lib/utils";
 
 export const Navbar = () => {
     const isMounted = useIsMounted();
@@ -20,15 +20,15 @@ export const Navbar = () => {
     const routes = [
         {
             name: "About me",
-            path: "/#about-me",
+            id: "about-me",
         },
         {
             name: "Projects",
-            path: "/#projects",
+            id: "projects",
         },
         {
             name: "Contact",
-            path: "/#contact",
+            id: "contact",
         },
     ];
 
@@ -76,7 +76,7 @@ export const Navbar = () => {
             >
                 {routes.map((route) => (
                     <motion.span
-                        key={route.path}
+                        key={route.id}
                         variants={{
                             hidden: { translateY: -100 },
                             visible: {
@@ -86,8 +86,8 @@ export const Navbar = () => {
                         }}
                     >
                         <Interactable>
-                            <Link
-                                href={route.path}
+                            <a
+                                onClick={() => scrollTowards(route.id)}
                                 className="
                                     uppercase 
                                     tracking-widest 
@@ -98,7 +98,7 @@ export const Navbar = () => {
                                 "
                             >
                                 {route.name}
-                            </Link>
+                            </a>
                         </Interactable>
                     </motion.span>
                 ))}
@@ -108,7 +108,6 @@ export const Navbar = () => {
                 onOpenChange={(open) => setSidebarOpen(open)}
             >
                 <SheetTrigger
-                    // onClick={() => setSidebarOpen(true)}
                     className="
                         pointer-events-auto 
                         block 
@@ -118,17 +117,19 @@ export const Navbar = () => {
                         transition-colors
                     "
                 >
-                    <Interactable className="p-2">
+                    <Interactable className="p-2" resetOnClick>
                         <CgMenuGridO size={30} />
                     </Interactable>
                 </SheetTrigger>
                 <SheetContent>
                     <nav className="flex flex-col items-center gap-2 pt-8">
                         {routes.map((route) => (
-                            <Link
-                                key={route.path}
-                                href={route.path}
-                                onClick={() => setSidebarOpen(false)}
+                            <a
+                                key={route.id}
+                                onClick={() => {
+                                    setSidebarOpen(false);
+                                    scrollTowards(route.id);
+                                }}
                                 className="
                                     uppercase 
                                     tracking-widest 
@@ -139,7 +140,7 @@ export const Navbar = () => {
                                 "
                             >
                                 {route.name}
-                            </Link>
+                            </a>
                         ))}
                     </nav>
                 </SheetContent>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import { SocialIcons } from "@/components/social-icons";
 import useScrollProgress from "@/hooks/useScrollProgress";
-import { cn } from "@/lib/utils";
+import { cn, scrollTowards } from "@/lib/utils";
 
 export const Footer = () => {
     const scrollProgress = useScrollProgress();
@@ -13,6 +13,7 @@ export const Footer = () => {
         <div className="items-center justify-between p-16 hidden md:flex">
             <SocialIcons orientation="vertical" size={20} className="p-4" />
             <motion.div
+                onClick={() => scrollTowards("about-me")}
                 className={cn(
                     `group
                     items-center 
