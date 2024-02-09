@@ -4,9 +4,9 @@ import { AnimationDefinition } from "framer-motion";
 import React, { useRef } from "react";
 
 import useCursor from "@/hooks/useCursor";
+import useIsMounted from "@/hooks/useIsMounted";
 import useMouseOn from "@/hooks/useMouseOn";
 import { cn } from "@/lib/utils";
-import useIsMounted from "@/hooks/useIsMounted";
 
 interface InteractableProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: "circle" | "fade" | "underline";

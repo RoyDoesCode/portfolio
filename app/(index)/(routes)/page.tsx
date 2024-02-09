@@ -7,7 +7,7 @@ import { Section } from "@/app/(index)/(routes)/components/section";
 
 const Home = () => {
     return (
-        <div className="flex flex-col gap-[60vh] pt-[35vh]">
+        <div className="flex flex-col gap-[40vh] pt-[35vh]">
             <Section id="home" title="WELCOME" parallaxDistance={300}>
                 <Hero />
             </Section>

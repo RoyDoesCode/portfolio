@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { Header } from "@/components/ui/header";
-import { cn } from "@/lib/utils";
 import { montserrat } from "@/app/(index)/layout";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Interactable } from "@/components/interactable";
 
 const Projects = () => {
     const [active, setActive] = useState(1);
@@ -14,14 +15,42 @@ const Projects = () => {
         {
             src: "/Chat App.png",
             title: "Chat App",
+            description:
+                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+            links: [
+                {
+                    url: "https://roy-messenger.vercel.app",
+                    title: "VIEW PROJECT",
+                },
+            ],
         },
         {
             src: "/Ecommerce Admin.png",
             title: "Ecommerce Admin",
+            description:
+                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+            links: [
+                {
+                    url: "https://roy-ecommerce-store.vercel.app",
+                    title: "VIEW STORE",
+                },
+                {
+                    url: "https://roy-ecommerce-admin.vercel.app",
+                    title: "VIEW ADMIN",
+                },
+            ],
         },
         {
             src: "/3D Shirts.png",
             title: "3D Shirt Customization",
+            description:
+                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+            links: [
+                {
+                    url: "https://roy-3d-shirts.vercel.app",
+                    title: "VIEW PROJECT",
+                },
+            ],
         },
     ];
 
@@ -38,10 +67,16 @@ const Projects = () => {
                         key={index}
                         className={cn(
                             "flex flex-col transition-all -mx-4",
-                            active !== index && "scale-75 blur-sm"
+                            active !== index && "scale-75 blur-[2px]"
                         )}
                     >
-                        <div onClick={() => setActive(index)}>
+                        <div
+                            onClick={() => setActive(index)}
+                            className={cn(
+                                "shadow-2xl hover:shadow-white",
+                                active === index && "shadow-white"
+                            )}
+                        >
                             <Image
                                 src={project.src}
                                 alt="Project Image"
@@ -61,7 +96,7 @@ const Projects = () => {
                                 alt="Project Image"
                                 width="1000"
                                 height="1000"
-                                className="w-full h-full object-cover rotate-180 project-img"
+                                className="w-full h-full object-cover -scale-y-100 project-img"
                             />
                         </div>
                     </div>
@@ -87,6 +122,30 @@ const Projects = () => {
                 )}
             >
                 {projects[active].title}
+            </div>
+            <div className="text-center w-3/4">
+                {projects[active].description}
+            </div>
+            <div className="flex gap-4">
+                {projects[active].links.map((link) => (
+                    <Interactable className="mt-20">
+                        <a
+                            href={link.url}
+                            target="_blank"
+                            className="
+                                text-lg
+                                uppercase 
+                                tracking-widest 
+                                p-4 
+                                text-neutral-400 
+                                hover:text-primary
+                                transition-colors
+                            "
+                        >
+                            {link.title}
+                        </a>
+                    </Interactable>
+                ))}
             </div>
         </div>
     );
