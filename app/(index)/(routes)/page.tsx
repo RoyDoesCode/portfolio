@@ -1,9 +1,10 @@
 "use client";
 
-import AboutMe from "@/app/(index)/(routes)/components/about-me";
-import Hero from "@/app/(index)/(routes)/components/hero";
-import Projects from "@/app/(index)/(routes)/components/projects";
-import { Section } from "@/app/(index)/(routes)/components/section";
+import AboutMe from "./components/about-me";
+import Contact from "./components/contact";
+import Hero from "./components/hero";
+import Projects from "./components/projects";
+import { Section } from "./components/section";
 
 const Home = () => {
     return (
@@ -16,6 +17,9 @@ const Home = () => {
             </Section>
             <Section id="projects" title="PROJECTS" parallaxDistance={300}>
                 <Projects />
+            </Section>
+            <Section id="contact" title="CONTACT" parallaxDistance={300}>
+                <Contact />
             </Section>
         </div>
     );
