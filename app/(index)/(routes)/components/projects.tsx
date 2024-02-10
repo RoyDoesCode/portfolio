@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { BsGithub } from "react-icons/bs";
 
 import { montserrat } from "@/app/(index)/layout";
 import { Interactable } from "@/components/interactable";
@@ -22,6 +24,7 @@ const Projects = () => {
                     title: "VIEW PROJECT",
                 },
             ],
+            github: "https://github.com/RoyDoesCode/messenger",
         },
         {
             src: "/Ecommerce Admin.png",
@@ -38,6 +41,7 @@ const Projects = () => {
                     title: "VIEW STORE",
                 },
             ],
+            github: "https://github.com/RoyDoesCode/ecommerce",
         },
         {
             src: "/3D Shirts.png",
@@ -50,6 +54,7 @@ const Projects = () => {
                     title: "VIEW PROJECT",
                 },
             ],
+            github: "https://github.com/RoyDoesCode/3d-shirts",
         },
     ];
 
@@ -128,10 +133,23 @@ const Projects = () => {
             <div className="text-center w-2/3">
                 {projects[active].description}
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 mt-20 items-center">
+                <Link
+                    href={projects[active].github}
+                    target="_blank"
+                    className="
+                        text-neutral-400 
+                        hover:text-primary 
+                        transition-colors
+                    "
+                >
+                    <Interactable className="p-2" resetOnClick>
+                        <BsGithub size={20} />
+                    </Interactable>
+                </Link>
                 {projects[active].links.map((link) => (
-                    <Interactable key={link.url} className="mt-20">
-                        <a
+                    <Interactable key={link.url}>
+                        <Link
                             href={link.url}
                             target="_blank"
                             className="
@@ -145,7 +163,7 @@ const Projects = () => {
                             "
                         >
                             {link.title}
-                        </a>
+                        </Link>
                     </Interactable>
                 ))}
             </div>
