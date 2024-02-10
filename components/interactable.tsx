@@ -106,6 +106,10 @@ export const Interactable: React.FC<InteractableProps> = ({
         [isMounted]
     );
 
+    if (!isMounted) {
+        return null;
+    }
+
     return (
         <div ref={ref} className={cn("group relative", className)} {...props}>
             {children}

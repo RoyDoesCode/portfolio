@@ -4,9 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import { montserrat } from "@/app/(index)/layout";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { Interactable } from "@/components/interactable";
+import { cn } from "@/lib/utils";
 
 const Projects = () => {
     const [active, setActive] = useState(1);
@@ -16,7 +15,7 @@ const Projects = () => {
             src: "/Chat App.png",
             title: "Chat App",
             description:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+                "My chat app website seamlessly emulates the familiar interface of WhatsApp or Facebook Messenger, offering users the convenience of both email and Google login systems. With real-time functionality at its core, users can engage in fluid conversations, enhancing their digital communication experience.",
             links: [
                 {
                     url: "https://roy-messenger.vercel.app",
@@ -28,15 +27,15 @@ const Projects = () => {
             src: "/Ecommerce Admin.png",
             title: "Ecommerce Admin",
             description:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+                "My ecommerce app comprises two distinct projects: an admin app and a store app. The admin app empowers users to create and manage ecommerce stores, customize billboards, add products with variations, set pricing, archive or feature items, and access via multiple login options including Google, GitHub, and email. Meanwhile, the store app dynamically reflects all changes made in the admin interface, ensuring seamless store management. Additionally, the store app boasts a fully functional payment system powered by Stripe, while the admin dashboard provides comprehensive insights into store statistics and order management.",
             links: [
-                {
-                    url: "https://roy-ecommerce-store.vercel.app",
-                    title: "VIEW STORE",
-                },
                 {
                     url: "https://roy-ecommerce-admin.vercel.app",
                     title: "VIEW ADMIN",
+                },
+                {
+                    url: "https://roy-ecommerce-store.vercel.app",
+                    title: "VIEW STORE",
                 },
             ],
         },
@@ -44,7 +43,7 @@ const Projects = () => {
             src: "/3D Shirts.png",
             title: "3D Shirt Customization",
             description:
-                "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed reprehenderit laudantium nobis accusamus consectetur cum aperiam provident sequi quas eos harum minima non similique expedita, quos maiores quasi eveniet quis!",
+                "My 3D shirt customization website app revolutionizes the way users personalize their apparel, offering real-time editing capabilities to change colors, add logos, or modify textures on a dynamic 3D shirt model. Seamlessly updating live on screen, users can preview their creations before exporting the customized model to an image for further use or sharing.",
             links: [
                 {
                     url: "https://roy-3d-shirts.vercel.app",
@@ -55,9 +54,9 @@ const Projects = () => {
     ];
 
     return (
-        <div className="flex flex-col justify-center items-center p-48">
+        <div className="flex flex-col justify-center items-center lg:p-32 xl:p-48">
             <div
-                className="flex transition-transform"
+                className="flex transition-transform gap-4 md:gap-0"
                 style={{
                     transform: `translateX(${-33.33 * (active - 1)}%)`,
                 }}
@@ -107,7 +106,10 @@ const Projects = () => {
                     `relative 
                     font-black 
                     text-primary 
-                    text-8xl 
+                    text-5xl
+                    sm:text-6xl
+                    lg:text-8xl 
+                    text-center
                     uppercase 
                     -translate-y-1/2 
                     before:inset-0 
@@ -123,12 +125,12 @@ const Projects = () => {
             >
                 {projects[active].title}
             </div>
-            <div className="text-center w-3/4">
+            <div className="text-center w-2/3">
                 {projects[active].description}
             </div>
             <div className="flex gap-4">
                 {projects[active].links.map((link) => (
-                    <Interactable className="mt-20">
+                    <Interactable key={link.url} className="mt-20">
                         <a
                             href={link.url}
                             target="_blank"
