@@ -1,19 +1,14 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import zod from "zod";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
+import { Interactable } from "@/components/interactable";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Header } from "@/components/ui/header";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Interactable } from "@/components/interactable";
 
 const formSchema = zod.object({
     name: zod
@@ -40,8 +35,16 @@ const Contact = () => {
         },
     });
 
-    const onValidSubmit = (values: FormValues) => {
-        // send email
+    const onValidSubmit = async (values: FormValues) => {
+        try {
+            const res = await axios.post("/api/email", values);
+
+            if (res.status === 200) {
+                toast.success("Successfully sent email!");
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        }
     };
 
     return (
