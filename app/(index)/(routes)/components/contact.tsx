@@ -1,31 +1,33 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import zod from "zod";
-import axios from "axios";
 import toast from "react-hot-toast";
+import zod from "zod";
 
 import { Interactable } from "@/components/interactable";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Header } from "@/components/ui/header";
 import { Input } from "@/components/ui/input";
+import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+emailjs.init({
+    publicKey: "bSP3W3gSbGqP7WQyE",
+});
+
 const formSchema = zod.object({
-    name: zod
-        .string()
-        .min(1, { message: "Name must contain at least 1 character." }),
-    email: zod
-        .string()
-        .min(1, { message: "Email must contain at least 1 character." })
-        .email("Invalid email address"),
-    message: zod
-        .string()
-        .min(10, { message: "Message must be at least 10 characters long." }),
+    name: zod.string().min(1),
+    email: zod.string().min(1).email(),
+    message: zod.string().min(1),
 });
 
 type FormValues = zod.infer<typeof formSchema>;
 
 const Contact = () => {
+    const [loading, setLoading] = useState(false);
+
     const form = useForm<FormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -36,15 +38,19 @@ const Contact = () => {
     });
 
     const onValidSubmit = async (values: FormValues) => {
-        try {
-            const res = await axios.post("/api/email", values);
-
-            if (res.status === 200) {
-                toast.success("Successfully sent email!");
-            }
-        } catch (error) {
-            toast.error("Something went wrong");
-        }
+        setLoading(true);
+        emailjs
+            .send("service_2h5ah9x", "template_plsf7re", values)
+            .then((response) => {
+                if (response.status === 200) {
+                    toast.success("Successfully sent email!");
+                    form.reset();
+                } else {
+                    toast.error("Something went wrong");
+                }
+            })
+            .catch(() => toast.error("Something went wrong"))
+            .finally(() => setLoading(false));
     };
 
     return (
@@ -128,7 +134,7 @@ const Contact = () => {
                                 <FormItem>
                                     <FormControl>
                                         <Input
-                                            placeholder="Message"
+                                            placeholder="I'd like to talk to you about..."
                                             {...field}
                                         />
                                     </FormControl>
@@ -136,10 +142,17 @@ const Contact = () => {
                             )}
                         />
                         <div className="flex justify-center">
-                            <Interactable className="p-4">
+                            <Interactable>
                                 <button
+                                    disabled={loading}
                                     type="submit"
-                                    className="text-neutral-400 hover:text-white transition-colors"
+                                    className="
+                                        text-neutral-400 
+                                        hover:text-white 
+                                        disabled:text-neutral-400 
+                                        transition-colors 
+                                        p-4
+                                    "
                                 >
                                     SEND MESSAGE
                                 </button>

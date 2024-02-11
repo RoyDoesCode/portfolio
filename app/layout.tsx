@@ -4,6 +4,7 @@ import "./globals.css";
 import { Background } from "@/app/(index)/components/background";
 import { Cursor } from "@/components/cursor";
 import { ThemeProvider } from "@/providers/theme-provider";
+import ToastProvider from "@/providers/toast-provider";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -23,6 +24,7 @@ export default function RootLayout({
                     defaultTheme="dark"
                     enableSystem
                 >
+                    <ToastProvider />
                     <Cursor />
                     <Background />
                     {children}
