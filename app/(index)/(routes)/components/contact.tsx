@@ -96,7 +96,9 @@ const Contact = () => {
                 <Header title="CONTACT FORM" />
                 <Form {...form}>
                     <form
-                        onSubmit={form.handleSubmit(onValidSubmit)}
+                        onSubmit={form.handleSubmit(onValidSubmit, () =>
+                            toast.error("Your form has some problems.")
+                        )}
                         className="w-full flex flex-col gap-16"
                     >
                         <FormField

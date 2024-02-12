@@ -21,6 +21,9 @@ const Home = () => {
             <Section id="contact" title="CONTACT" parallaxDistance={300}>
                 <Contact />
             </Section>
+            <div className="text-sm text-center text-neutral-400 m-10">
+                Roy Barzilay &copy; All rights reserved.
+            </div>
         </div>
     );
 };
