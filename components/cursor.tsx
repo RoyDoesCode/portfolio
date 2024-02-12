@@ -79,7 +79,7 @@ export const Cursor = () => {
             borderLeft: "1px solid white",
             rotate: "0turn",
         });
-    }, [controls, borderControls, cursor]);
+    }, []);
 
     return (
         <motion.span

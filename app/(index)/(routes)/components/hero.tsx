@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Montserrat } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 
-import { montserrat } from "../../layout";
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    adjustFontFallback: false,
+});
 
 const Hero = () => {
     return (

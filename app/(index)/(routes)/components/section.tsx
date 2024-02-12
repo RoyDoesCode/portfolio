@@ -1,10 +1,15 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { HTMLAttributes, useRef } from "react";
+import { Montserrat } from "next/font/google";
+import React, { useRef } from "react";
 
-import { montserrat } from "@/app/(index)/layout";
 import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    adjustFontFallback: false,
+});
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
     children: React.ReactNode;

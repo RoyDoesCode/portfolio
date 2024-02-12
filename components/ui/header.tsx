@@ -1,7 +1,12 @@
+import { Montserrat } from "next/font/google";
 import React from "react";
 
-import { montserrat } from "@/app/(index)/layout";
 import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    adjustFontFallback: false,
+});
 
 interface HeaderProps {
     title: string;

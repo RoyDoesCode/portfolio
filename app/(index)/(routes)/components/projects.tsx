@@ -1,13 +1,18 @@
 "use client";
 
+import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { BsGithub } from "react-icons/bs";
 
-import { montserrat } from "@/app/(index)/layout";
 import { Interactable } from "@/components/interactable";
 import { cn } from "@/lib/utils";
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    adjustFontFallback: false,
+});
 
 const Projects = () => {
     const [active, setActive] = useState(1);
