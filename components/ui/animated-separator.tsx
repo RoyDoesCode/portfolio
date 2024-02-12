@@ -47,7 +47,7 @@ export const AnimatedSeparator: React.FC<AnimatedSeparatorProps> = ({
 
             setDashCount(dashCount);
         }
-    }, [ref.current, dashLength, orientation, spacing]);
+    }, [dashLength, orientation, spacing]);
 
     const containerStyle: CSSProperties =
         orientation === "vertical"
